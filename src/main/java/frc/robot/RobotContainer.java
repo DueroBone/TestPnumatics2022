@@ -12,6 +12,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Piston;
+import frc.robot.subsystems.Hammer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -25,7 +26,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final Piston m_piston = new Piston();
+  //private final Piston m_piston = new Piston();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   Compressor c = new Compressor(0, PneumaticsModuleType.CTREPCM);
@@ -64,10 +65,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    con0ButtonA.whenPressed(() -> c.enableAnalog(55, 60));
-    con0BumperLeft.whileActiveContinuous(() -> System.out.println(c.getCurrent()));
-    //con0BumperLeft.whenPressed(Piston.contract(true));
-    //con0BumperRight.whenPressed(Piston.contract(false));
+    con0ButtonA.whenPressed(() -> c.enableAnalog(30, 60));
+    //con0BumperLeft.whileActiveContinuous(() -> System.out.println(c.getCurrent()));
+    con0BumperLeft.whenPressed(() -> Piston.contract(true));
+    con0BumperRight.whenPressed(() -> Piston.contract(false));
+    con0PovUp.whenPressed(() -> Piston.contract(true));
+    con0PovDown.whenPressed(() -> Piston.contract(false));
+    con0PovLeft.whenPressed(() -> Hammer.contract(true));
+    con0PovRight.whenPressed(() -> Hammer.contract(false));
   }
 
   /**
