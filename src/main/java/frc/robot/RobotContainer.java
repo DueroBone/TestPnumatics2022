@@ -26,7 +26,8 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  //private final Piston m_piston = new Piston();
+  private final Piston m_piston = new Piston();
+  private final Hammer m_hammer = new Hammer();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   Compressor c = new Compressor(0, PneumaticsModuleType.CTREPCM);
@@ -67,13 +68,13 @@ public class RobotContainer {
   private void configureButtonBindings() {
     con0ButtonA.whenPressed(() -> c.enableAnalog(30, 60));
     //con0BumperLeft.whileActiveContinuous(() -> System.out.println(c.getCurrent()));
-    //con0BumperLeft.whenPressed(() -> Piston.contract(true));
-    //con0BumperRight.whenPressed(() -> Piston.contract(false));
     con0PovUp.whenPressed(() -> Piston.contract(true));
     con0PovDown.whenPressed(() -> Piston.contract(false));
     con0PovLeft.whenPressed(() -> Hammer.contract(true));
     con0PovRight.whenPressed(() -> Hammer.contract(false));
+    con0ButtonY.whenPressed(() -> Hammer.hammerToggle());
     con0ButtonX.whileActiveContinuous(() -> System.out.println(c.getPressure()));
+    //We are only using the hammer for testing. The lights on the solenoid change, but the air output doesn't change.
   }
 
   /**

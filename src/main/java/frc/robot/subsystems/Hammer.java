@@ -8,25 +8,23 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 
 public class Hammer {
-    private static Solenoid piston;
+    private static DoubleSolenoid hammer;
     Compressor compressor;
-    public Hammer(){
-    //piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
-    piston = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
-  }
+    public Hammer() {
+    hammer = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 3, 4);
+    //hammer.set(DoubleSolenoid.Value.kOff);
+    //hammer.close();
+    }
     public static Command contract(final boolean contracted) {
         System.out.println("Hammer extended: " + contracted);
-        piston.set(contracted);
-        /*
         if (contracted) {    // if true then shift to low gear
-          piston.set(DoubleSolenoid.Value.kForward); // solenoid controls output that pulls piston in or out
+          hammer.set(DoubleSolenoid.Value.kForward); // solenoid controls output that pulls piston in or out
         } else {
-          piston.set(DoubleSolenoid.Value.kReverse);
+          hammer.set(DoubleSolenoid.Value.kReverse);
         }
-        */
         return null;
     }
-    public static void pistonToggle(){
-      piston.toggle();
+    public static void hammerToggle(){
+      hammer.toggle();
     }
 }

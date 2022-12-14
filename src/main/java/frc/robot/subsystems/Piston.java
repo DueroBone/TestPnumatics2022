@@ -9,21 +9,26 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class Piston {
     private static DoubleSolenoid piston;
+    //private static Solenoid piston0;
+    //private static Solenoid piston1;
     Compressor compressor;
-    public Piston(){
+    public Piston() {
     piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
-    }
+  }
+
     public static Command contract(final boolean contracted) {
         System.out.println("Piston extended: " + contracted);
+        //piston0.set(contracted);
+        //piston1.set(!contracted);
     
         if (contracted) {    // if true then shift to low gear
           piston.set(DoubleSolenoid.Value.kForward); // solenoid controls output that pulls piston in or out
         } else {
-          //piston.set(DoubleSolenoid.Value.kReverse);
+          piston.set(DoubleSolenoid.Value.kReverse);
         }
         return null;
     }
     public static void pistonToggle(){
-      piston.toggle();
+      //piston.toggle();
     }
 }
