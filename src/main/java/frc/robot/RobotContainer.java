@@ -67,12 +67,13 @@ public class RobotContainer {
   private void configureButtonBindings() {
     con0ButtonA.whenPressed(() -> c.enableAnalog(30, 60));
     //con0BumperLeft.whileActiveContinuous(() -> System.out.println(c.getCurrent()));
-    con0BumperLeft.whenPressed(() -> Piston.contract(true));
-    con0BumperRight.whenPressed(() -> Piston.contract(false));
+    //con0BumperLeft.whenPressed(() -> Piston.contract(true));
+    //con0BumperRight.whenPressed(() -> Piston.contract(false));
     con0PovUp.whenPressed(() -> Piston.contract(true));
     con0PovDown.whenPressed(() -> Piston.contract(false));
     con0PovLeft.whenPressed(() -> Hammer.contract(true));
     con0PovRight.whenPressed(() -> Hammer.contract(false));
+    con0ButtonX.whileActiveContinuous(() -> System.out.println(c.getPressure()));
   }
 
   /**
