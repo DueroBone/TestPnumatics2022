@@ -160,4 +160,5 @@ bin/
 
 # Simulation GUI and other tools window save file
 *-window.json
+gradlew
 .vscode/launch.json
